@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Stock Symbol </th>
+                <th> Shares Owned </th>
+                <th> Current Price </th>
+                <th> Total Value </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in db %}
+            <tr>
+                <th> {{row["symbol"]}} </th>
+                <th> {{row["shares"]}} </th>
+                <th> {{row["price"] | usd}} </th>
+                <th> {{row["total_value"] | usd}} </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <th> Total Portfolio Value: {{total | usd}} </th>
+                <th> Cash Remaining: {{cash | usd}}</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

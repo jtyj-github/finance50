@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transactions
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Transaction Type </th>
+                <th> Stock Symbol </th>
+                <th> Shares Owned </th>
+                <th> Current Price </th>
+                <th> Date of Transaction </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in db %}
+            <tr>
+                <th> {{row["type"]}} </th>
+                <th> {{row["symbol"]}} </th>
+                <th> {{row["shares"]}} </th>
+                <th> {{row["price"] | usd}} </th>
+                <th> {{row["date"]}} </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
